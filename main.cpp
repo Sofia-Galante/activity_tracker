@@ -1,7 +1,9 @@
 #include <iostream>
 #include <wx/wx.h>
+#include <ctime>
+#include <string>
+#include "Activity.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
