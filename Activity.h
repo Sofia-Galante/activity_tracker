@@ -20,16 +20,10 @@ public:
     void setDescription(std::string &description_){
         description=description_;
     }
-    //TODO: aggiungere controllo della validità di giorno e ora + aggiungere giorno della settimana;
-    void setDate(std::string &day, std::string &month, std::string &year) {
-        date=day+"/"+month+"/"+year;
-    }
-    void setStartTime (std::string &hour, std::string &minute){
-        startTime = hour+":"+minute;
-    }
-    void setEndTime (std::string &hour, std::string &minute){
-        endTime = hour+":"+minute;
-    }
+    //TODO: aggiungere giorno della settimana
+    void setDate(int day_, int month_, int year_);
+    void setStartTime (int hour_, int minute_);
+    void setEndTime (int hour_, int minute_);
 
     std::string getName() const{
         return name;
