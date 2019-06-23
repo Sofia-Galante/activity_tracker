@@ -7,16 +7,21 @@
 
 #include "Activity.h"
 #include <map>
+#include <iostream>
 
 class Register {
 public:
 
     unsigned long coutActivities(std::string &date) const{
-        return registro.count(date);
+        return logbook.count(date);
     }
 
+    void saveActivity(const Activity &activity);
+
+    void printDateActivities(const std::string &date);
+
 private:
-    std::map<std::string, Activity> registro;
+    std::multimap<std::string, Activity> logbook;
 };
 
 #endif //ACTIVITYTRACKER_REGISTER_H
