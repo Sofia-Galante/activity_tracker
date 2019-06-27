@@ -17,7 +17,7 @@ Activity::Activity(std::string name_) : name(name_){
     if(month.size()!=2)
         month="0"+month;
     date = day+"/"+month+"/"+year;
-    description = "Inserire descrizione";
+    description = "Nessuna descrizione inserita";
     startTime = "00:00";
     endTime = "00:00";
 }
@@ -61,6 +61,10 @@ void Activity::setStartTime (int hour_, int minute_){
         minute="0"+minute;
 
     startTime = hour+":"+minute;
+
+    if(endTime < startTime){
+        endTime=startTime;
+    }
 }
 void Activity::setEndTime (int hour_, int minute_){
     if(hour_<0 || hour_ >=24)
@@ -76,6 +80,10 @@ void Activity::setEndTime (int hour_, int minute_){
         minute="0"+minute;
 
     endTime = hour+":"+minute;
+
+    if(endTime<startTime){
+        startTime=endTime;
+    }
 }
 
 void Activity::print(){

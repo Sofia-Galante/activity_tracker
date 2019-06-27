@@ -11,16 +11,15 @@
 
 class Activity{
 public:
-    explicit Activity(std::string name_);
+    explicit Activity(std::string name_="Senza titolo");
 
 
-    void setName(std::string &name_){
+    void setName(const std::string &name_){
         name=name_;
     }
-    void setDescription(std::string &description_){
+    void setDescription(const std::string &description_){
         description=description_;
     }
-    //TODO: aggiungere giorno della settimana
     void setDate(int day_, int month_, int year_);
     void setStartTime (int hour_, int minute_);
     void setEndTime (int hour_, int minute_);
