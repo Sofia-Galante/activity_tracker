@@ -27,3 +27,9 @@ void Register::printDateActivities(const std::string &date) {
             it->second.print();
         }
 }
+
+void Register::printAllActivities() {
+    for(auto it=logbook.begin(); it!=logbook.end(); it++){
+        it->second.print();
+    }
+}

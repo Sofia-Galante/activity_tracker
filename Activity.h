@@ -42,6 +42,28 @@ public:
 
     void print();
 
+    bool operator== (const Activity& right) const{
+        if(right.name!=this->name)
+            return false;
+        if(right.date!=this->date)
+            return false;
+        if(right.startTime!=this->startTime)
+            return false;
+        if(right.endTime!=this->endTime)
+            return false;
+        if(right.description!=this->description)
+            return false;
+        return true;
+    }
+
+    bool operator< (const Activity& right) const{
+        if (this->date>=right.date)
+            return false;
+        if(this->startTime>=right.startTime)
+            return false;
+        return true;
+    }
+
 private:
     std::string name;
     std::string description;

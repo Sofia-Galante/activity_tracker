@@ -12,7 +12,7 @@
 class Register {
 public:
 
-    unsigned long coutActivities(std::string &date) const{
+    unsigned long coutDateActivities(std::string date) const{
         return logbook.count(date);
     }
 
@@ -20,6 +20,17 @@ public:
 
     void printDateActivities(const std::string &date);
 
+    void printAllActivities();
+
+    std::multimap<std::string, Activity> getLogbook(){
+        return logbook;
+    }
+    std::multimap<std::string, Activity>::iterator begin(){
+        return logbook.begin();
+    }
+    std::multimap<std::string, Activity>::iterator end(){
+        return logbook.end();
+    }
 private:
     std::multimap<std::string, Activity> logbook;
 };
