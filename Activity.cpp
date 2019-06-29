@@ -5,7 +5,7 @@
 #include "Activity.h"
 
 Activity::Activity()
-    : name("Senza titolo"), description("Nessuna descrizione inserita"), startTime("00:00"), endTime("00:00")
+    : name(""), description(""), startTime("00:00"), endTime("00:00")
 {
     time_t today = time(nullptr);
     struct tm *t = localtime(&today);
@@ -20,30 +20,8 @@ Activity::Activity()
     date = day+"/"+month+"/"+year;
 }
 
-void Activity::setDate(int day_, int month_, int year_) {
-    if(month_ <= 0 || month_ >12)
-        month_=12;
-    if(day_<=0 || day_>31)
-        day_=31;
-    if((month_==4 || month_==6 || month_==9 || month_==11) && day_ >30)
-        day_=30;
-    if(month_==2 && day_>28){
-        if(year_%4==0)
-            day_=29;
-        else
-            day_=28;
-    }
-
-    auto day = std::to_string(day_);
-    auto month = std::to_string (month_);
-    auto year = std::to_string (year_);
-
-    if(day.size()!=2)
-        day="0"+day;
-    if(month.size()!=2)
-        month="0"+month;
-
-    date=day+"/"+month+"/"+year;
+void Activity::setDate(std::string date_) {
+    date=date_;
 }
 void Activity::setStartTime (int hour_, int minute_){
     if(hour_<0 || hour_ >=24)

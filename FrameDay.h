@@ -19,7 +19,8 @@ public:
     FrameDay(const wxString &title, Register *logbook);
 
     void newActivity(wxCommandEvent &event);
-    void refresh(wxShowEvent &event);
+    void modifyActivity(wxListEvent &event);
+
     virtual void update() override;
 
 private:
@@ -28,13 +29,14 @@ private:
     wxMenu *mod;
     wxListCtrl *list;
     wxGenericCalendarCtrl *calendar;
-    std::vector<Activity> activities;
 
+    std::vector<Activity> activities;
     Register *logbook;
 
     wxDECLARE_EVENT_TABLE();
 };
 
 const int ID_NEWACTIVITY = 1;
+const int ID_LIST = 2;
 
 #endif //ACTIVITYTRACKER_FRAMEDAY_H

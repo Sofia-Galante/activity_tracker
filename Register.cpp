@@ -30,6 +30,7 @@ void Register::eraseActivity(const Activity &activity) {
     for(auto it=key.first; it!=key.second; it++){
         if(it->second==activity){
             logbook.erase(it);
+            notify();
             break;
         }
     }

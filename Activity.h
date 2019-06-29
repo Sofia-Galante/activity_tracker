@@ -20,7 +20,7 @@ public:
     void setDescription(const std::string &description_){
         description=description_;
     }
-    void setDate(int day_, int month_, int year_);
+    void setDate(std::string date_);
     void setStartTime (int hour_, int minute_);
     void setEndTime (int hour_, int minute_);
 

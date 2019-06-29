@@ -7,6 +7,7 @@
 
 #include <wx/wx.h>
 #include "Register.h"
+#include <wx/datectrl.h>
 
 class FrameActivity : public wxFrame{
 public:
@@ -14,10 +15,12 @@ public:
     void editActivity(const Activity& a){
         activity=a;
         edited=true;
+        deleteButton->Show();
     }
 
     void refresh(wxShowEvent &event);
     void save(wxCommandEvent &event);
+    void eliminate(wxCommandEvent &event);
 
 private:
     Activity activity;
@@ -25,14 +28,20 @@ private:
     Register *logbook;
 
     wxButton *saveButton;
-    wxTextCtrl *tc1;
-    wxTextCtrl *tc2;
-    wxTextCtrl *tc3;
-    wxTextCtrl *tc5;
+    wxButton *deleteButton;
+
+    wxTextCtrl *txtTitle;
+    wxTextCtrl *txtSHour;
+    wxTextCtrl *txtSMinute;
+    wxTextCtrl *txtEHour;
+    wxTextCtrl *txtEMinute;
+    wxTextCtrl *txtDescription;
+    wxDatePickerCtrl *datepicker;
 
     wxDECLARE_EVENT_TABLE();
 };
 
 const int ID_SAVE = 1;
+const int ID_DELETE = 2;
 
 #endif //ACTIVITYTRACKER_FRAMEACTIVITY_H

@@ -6,6 +6,7 @@
 
 wxBEGIN_EVENT_TABLE(FrameDay, wxFrame)
     EVT_MENU(ID_NEWACTIVITY, FrameDay::newActivity)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, FrameDay::modifyActivity)
 wxEND_EVENT_TABLE()
 
 FrameDay::FrameDay(const wxString &title, Register *r)
@@ -17,14 +18,8 @@ FrameDay::FrameDay(const wxString &title, Register *r)
     file = new wxMenu;
 
     file->Append(ID_NEWACTIVITY, wxT("&Nuova attività"));
-    file->Append(wxID_ANY, wxT("&Vai alla data"));
-    file->AppendSeparator();
-
-    mod = new wxMenu;
-    mod->Append(wxID_ANY, wxT("&Modifica attività"));
 
     menubar->Append(file, wxT("&File"));
-    menubar->Append(mod, wxT("&Modifica"));
     SetMenuBar(menubar);
 
 
@@ -47,6 +42,12 @@ FrameDay::FrameDay(const wxString &title, Register *r)
 
 void FrameDay::newActivity(wxCommandEvent & WXUNUSED(event)) {
     auto frame= new FrameActivity("Nuova attività", logbook);
+    frame->Show(true);
+}
+
+void FrameDay::modifyActivity(wxListEvent &event) {
+    auto frame = new FrameActivity("Modifica attività", logbook);
+    frame->editActivity(activities[event.GetIndex()]);
     frame->Show(true);
 }
 
