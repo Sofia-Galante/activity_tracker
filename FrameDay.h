@@ -6,8 +6,11 @@
 #define ACTIVITYTRACKER_FRAMEDAY_H
 
 #include <wx/wx.h>
+#include <wx/listctrl.h>
+#include <wx/calctrl.h>
 #include "FrameActivity.h"
 #include "Observer.h"
+
 
 
 
@@ -16,12 +19,16 @@ public:
     FrameDay(const wxString &title, Register *logbook);
 
     void newActivity(wxCommandEvent &event);
+    void refresh(wxShowEvent &event);
     virtual void update() override;
 
 private:
     wxMenuBar *menubar;
     wxMenu *file;
     wxMenu *mod;
+    wxListCtrl *list;
+    wxGenericCalendarCtrl *calendar;
+    std::vector<Activity> activities;
 
     Register *logbook;
 

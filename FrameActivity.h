@@ -10,16 +10,21 @@
 
 class FrameActivity : public wxFrame{
 public:
-    FrameActivity(const wxString &title);
-    void refresh();
-
-    void setActivity(const Activity& a){
+    FrameActivity(const wxString &title, Register *r);
+    void editActivity(const Activity& a){
         activity=a;
+        edited=true;
     }
+
+    void refresh(wxShowEvent &event);
+    void save(wxCommandEvent &event);
 
 private:
     Activity activity;
-    wxButton *save;
+    bool edited;
+    Register *logbook;
+
+    wxButton *saveButton;
     wxTextCtrl *tc1;
     wxTextCtrl *tc2;
     wxTextCtrl *tc3;
@@ -28,10 +33,6 @@ private:
     wxDECLARE_EVENT_TABLE();
 };
 
-const int ID_TITLE = 1;
-const int ID_DATE = 2;
-const int ID_STIME = 3;
-const int ID_ETIME = 4;
-const int ID_DESCR = 5;
+const int ID_SAVE = 1;
 
 #endif //ACTIVITYTRACKER_FRAMEACTIVITY_H

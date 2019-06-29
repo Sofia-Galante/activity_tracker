@@ -60,4 +60,30 @@ TEST_F(RegisterSuite, TestCount){
     ASSERT_EQ(0, r.coutDateActivities(date3));
 }
 
+TEST_F(RegisterSuite, TestEraseSingleElement){
+    r.eraseActivity(a1);
+    auto it=r.begin();
+    ASSERT_EQ(it->second, a2);
+    it++;
+    ASSERT_EQ(it->second, a3);
+}
 
+TEST_F(RegisterSuite, TestEraseUnknownElement){
+    Activity a4;
+    r.eraseActivity(a4);
+    auto it=r.begin();
+    ASSERT_EQ(it->second, a1);
+    it++;
+    ASSERT_EQ(it->second, a2);
+    it++;
+    ASSERT_EQ(it->second, a3);
+}
+
+TEST_F(RegisterSuite, TestEraseAllAndEraseFromEmptyRegister){
+    r.eraseActivity(a1);
+    r.eraseActivity(a2);
+    r.eraseActivity(a3);
+    ASSERT_EQ(r.begin(), r.end());
+    r.eraseActivity(a1);
+    ASSERT_EQ(r.begin(), r.end());
+}

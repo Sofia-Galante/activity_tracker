@@ -8,6 +8,7 @@
 #include "Activity.h"
 #include "Subject.h"
 #include <map>
+#include <vector>
 #include <list>
 #include <iostream>
 
@@ -18,7 +19,8 @@ public:
         return logbook.count(date);
     }
     void saveActivity(const Activity &activity);
-    void printDateActivities(const std::string &date);
+    void eraseActivity(const Activity &activity);
+    std::vector<Activity> GetDailyActivities(const std::string &date);
     void printAllActivities();
 
     std::multimap<std::string, Activity>::iterator begin(){

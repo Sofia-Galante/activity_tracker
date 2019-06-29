@@ -5,11 +5,12 @@
 #include "FrameActivity.h"
 
 wxBEGIN_EVENT_TABLE(FrameActivity, wxFrame)
-
+    EVT_SHOW(FrameActivity::refresh)
+    EVT_BUTTON(ID_SAVE, FrameActivity::save)
 wxEND_EVENT_TABLE()
 
-FrameActivity::FrameActivity(const wxString& framename)
-    : wxFrame(nullptr, wxID_ANY, framename, wxDefaultPosition, wxSize(300, 500)){
+FrameActivity::FrameActivity(const wxString& framename, Register *r)
+    : wxFrame(nullptr, wxID_ANY, framename, wxDefaultPosition, wxSize(300, 500)), edited(false), logbook(r){
 
     wxPanel *panelbox = new wxPanel(this, -1);
 
@@ -42,18 +43,25 @@ FrameActivity::FrameActivity(const wxString& framename)
     box->Add(fgs, 1, wxALL | wxEXPAND, 15);
     panelbox->SetSizer(box);
 
-    save = new wxButton(panelbox, wxID_ANY, wxT("Salva"));
-    box->Add(save, 0, wxALL, 15);
-
-    refresh();
+    saveButton = new wxButton(panelbox, ID_SAVE, wxT("Salva"));
+    box->Add(saveButton, 0, wxALL, 15);
 
     Centre();
 }
 
-void FrameActivity::refresh() {
+void FrameActivity::refresh(wxShowEvent &event) {
     tc1->SetLabelText(activity.getName());
     tc2->SetLabelText(activity.getDate());
     tc3->SetLabelText(activity.getStartTime());
     tc5->Clear();
     tc5->AppendText(activity.getDescription());
+}
+
+void FrameActivity::save(wxCommandEvent &event) {
+    if(edited)
+        logbook->eraseActivity(activity);
+    activity.setName(tc1->GetLabelText().ToStdString());
+    activity.setDescription(tc5->GetLabelText().ToStdString());
+    logbook->saveActivity(activity);
+    Close();
 }

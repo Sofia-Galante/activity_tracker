@@ -21,14 +21,28 @@ void Register::saveActivity(const Activity &activity) {
         }
         logbook.insert(correctPlace, std::pair<std::string, Activity> (activity.getDate(), activity) );
     }
+
+    notify();
 }
 
-void Register::printDateActivities(const std::string &date) {
-    std::pair <std::multimap <std::string, Activity>::iterator, std::multimap <std::string, Activity>::iterator> key;
-    key = logbook.equal_range(date);
-        for(auto it=key.first; it!=key.second; it++){
-            it->second.print();
+void Register::eraseActivity(const Activity &activity) {
+    auto key = logbook.equal_range(activity.getDate());
+    for(auto it=key.first; it!=key.second; it++){
+        if(it->second==activity){
+            logbook.erase(it);
+            break;
         }
+    }
+
+}
+
+std::vector<Activity> Register::GetDailyActivities(const std::string &date) {
+    auto key = logbook.equal_range(date);
+    std::vector<Activity> vector;
+    for (auto it=key.first; it!=key.second; it++){
+        vector.push_back(it->second);
+    }
+    return vector;
 }
 
 void Register::printAllActivities() {
