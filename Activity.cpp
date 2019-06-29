@@ -4,8 +4,9 @@
 
 #include "Activity.h"
 
-Activity::Activity(std::string name_) : name(name_){
-
+Activity::Activity()
+    : name("Senza titolo"), description("Nessuna descrizione inserita"), startTime("00:00"), endTime("00:00")
+{
     time_t today = time(nullptr);
     struct tm *t = localtime(&today);
     auto day = std::to_string(t->tm_mday) ;
@@ -17,9 +18,6 @@ Activity::Activity(std::string name_) : name(name_){
     if(month.size()!=2)
         month="0"+month;
     date = day+"/"+month+"/"+year;
-    description = "Nessuna descrizione inserita";
-    startTime = "00:00";
-    endTime = "00:00";
 }
 
 void Activity::setDate(int day_, int month_, int year_) {

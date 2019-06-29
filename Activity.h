@@ -11,7 +11,7 @@
 
 class Activity{
 public:
-    explicit Activity(std::string name_="Senza titolo");
+    explicit Activity();
 
 
     void setName(const std::string &name_){
@@ -55,7 +55,6 @@ public:
             return false;
         return true;
     }
-
     bool operator< (const Activity& right) const{
         if (this->date>=right.date)
             return false;
