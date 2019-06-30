@@ -12,19 +12,19 @@ protected:
     virtual void SetUp(){
 
         a1.setName("1");
-        a1.setDate(20, 3, 2019);
+        a1.setDate("20/03/2019");
         a1.setStartTime(22, 30);
         a1.setEndTime(22, 50);
         a1.setDescription("Prima attività");
 
         a2.setName("2");
-        a2.setDate(21, 3, 2019);
+        a2.setDate("21/03/2019");
         a2.setStartTime(22, 30);
         a2.setEndTime(22, 50);
         a2.setDescription("Seconda attività");
 
         a3.setName("3");
-        a3.setDate(21, 3, 2019);
+        a3.setDate("21/03/2019");
         a3.setStartTime(23, 30);
         a3.setEndTime(23, 50);
         a3.setDescription("Terza attività");
@@ -50,15 +50,7 @@ TEST_F(RegisterSuite, TestSaveActivity){
     ASSERT_EQ(it->second, a3);
 }
 
-TEST_F(RegisterSuite, TestCount){
-    std::string date1=a1.getDate();
-    std::string date2=a2.getDate();
-    std::string date3="20/04/2019";
 
-    ASSERT_EQ(1, r.coutDateActivities(date1));
-    ASSERT_EQ(2, r.coutDateActivities(date2));
-    ASSERT_EQ(0, r.coutDateActivities(date3));
-}
 
 TEST_F(RegisterSuite, TestEraseSingleElement){
     r.eraseActivity(a1);

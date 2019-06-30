@@ -15,13 +15,9 @@
 class Register : public Subject {
 public:
 
-    unsigned long coutDateActivities(std::string date) const{
-        return logbook.count(date);
-    }
     void saveActivity(const Activity &activity);
     void eraseActivity(const Activity &activity);
     std::vector<Activity> GetDailyActivities(const std::string &date);
-    void printAllActivities();
 
     std::multimap<std::string, Activity>::iterator begin(){
         return logbook.begin();

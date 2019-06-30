@@ -25,8 +25,8 @@ protected:
 };
 
 TEST_F(ActivitySuite, Constructor){
-    ASSERT_EQ("Senza titolo", a.getName());
-    ASSERT_EQ("Nessuna descrizione inserita", a.getDescription());
+    ASSERT_EQ("", a.getName());
+    ASSERT_EQ("", a.getDescription());
     ASSERT_EQ("00:00", a.getStartTime());
     ASSERT_EQ("00:00", a.getEndTime());
     ASSERT_EQ(date, a.getDate());

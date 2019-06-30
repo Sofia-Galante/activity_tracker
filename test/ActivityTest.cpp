@@ -58,21 +58,9 @@ TEST(Activity, TestEndTime){
 
 TEST(Activity, TestDate){
     Activity a;
-    a.setDate(20, 10, 1999);
+    a.setDate("20/10/1999");
     ASSERT_EQ("20/10/1999", a.getDate());
 
-    a.setDate(20, 30, 1999);
+    a.setDate("20/12/1999");
     ASSERT_EQ("20/12/1999", a.getDate());
-
-    a.setDate(20, -1, 1999);
-    ASSERT_EQ("20/12/1999", a.getDate());
-
-    a.setDate(33, 1, 1999);
-    ASSERT_EQ("31/01/1999", a.getDate());
-
-    a.setDate(-2, 1, 1999);
-    ASSERT_EQ("31/01/1999", a.getDate());
-
-    a.setDate(-2, -1, 1999);
-    ASSERT_EQ("31/12/1999", a.getDate());
 }

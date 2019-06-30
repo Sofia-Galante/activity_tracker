@@ -20,15 +20,17 @@ public:
 
     void newActivity(wxCommandEvent &event);
     void modifyActivity(wxListEvent &event);
+    void goToDay(wxCalendarEvent &event);
 
     virtual void update() override;
 
 private:
     wxMenuBar *menubar;
     wxMenu *file;
-    wxMenu *mod;
     wxListCtrl *list;
     wxGenericCalendarCtrl *calendar;
+    wxButton *activity;
+    wxStaticText *dateDay;
 
     std::vector<Activity> activities;
     Register *logbook;
@@ -37,6 +39,5 @@ private:
 };
 
 const int ID_NEWACTIVITY = 1;
-const int ID_LIST = 2;
-
+const int ID_ACTIVITY = 2;
 #endif //ACTIVITYTRACKER_FRAMEDAY_H

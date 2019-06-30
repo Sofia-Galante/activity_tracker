@@ -46,12 +46,6 @@ std::vector<Activity> Register::GetDailyActivities(const std::string &date) {
     return vector;
 }
 
-void Register::printAllActivities() {
-    for(auto it=logbook.begin(); it!=logbook.end(); it++){
-        it->second.print();
-    }
-}
-
 void Register::subscribe(Observer *o) {
     observers.push_back(o);
 }
