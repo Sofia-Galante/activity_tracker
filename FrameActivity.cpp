@@ -10,10 +10,11 @@ wxBEGIN_EVENT_TABLE(FrameActivity, wxFrame)
     EVT_BUTTON(ID_DELETE, FrameActivity::eliminate)
 wxEND_EVENT_TABLE()
 
-FrameActivity::FrameActivity(const wxString& framename, Register *r)
-    : wxFrame(nullptr, wxID_ANY, framename, wxDefaultPosition, wxSize(300, 500)), edited(false), logbook(r){
+FrameActivity::FrameActivity(const wxString& framename, Register *r, std::string d)
+    : wxFrame(nullptr, wxID_ANY, framename, wxDefaultPosition, wxSize(300, 500)), edited(false), logbook(r), date(d){
 
     wxPanel *panelbox = new wxPanel(this, -1);
+    panelbox->SetOwnBackgroundColour(*palette.lightestYellow);
 
     wxBoxSizer *box = new wxBoxSizer(wxVERTICAL);
 
@@ -76,6 +77,9 @@ FrameActivity::FrameActivity(const wxString& framename, Register *r)
 }
 
 void FrameActivity::refresh(wxShowEvent &event) {
+    if(!edited)
+        activity.setDate(date);
+
     txtTitle->SetLabelText(activity.getName());
     txtDescription->Clear();
     txtDescription->AppendText(activity.getDescription());

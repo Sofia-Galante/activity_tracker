@@ -6,12 +6,13 @@
 #define ACTIVITYTRACKER_FRAMEACTIVITY_H
 
 #include <wx/wx.h>
-#include "Register.h"
 #include <wx/datectrl.h>
+#include "Register.h"
+#include "ColorsAndFonts.h"
 
 class FrameActivity : public wxFrame{
 public:
-    FrameActivity(const wxString &title, Register *r);
+    FrameActivity(const wxString &title, Register *r, std::string d);
     void editActivity(const Activity& a){
         activity=a;
         edited=true;
@@ -24,8 +25,9 @@ public:
 
 private:
     Activity activity;
-    bool edited;
     Register *logbook;
+    bool edited;
+    std::string date;
 
     wxButton *saveButton;
     wxButton *deleteButton;
@@ -37,6 +39,8 @@ private:
     wxTextCtrl *txtEMinute;
     wxTextCtrl *txtDescription;
     wxDatePickerCtrl *datepicker;
+
+    Colors palette;
 
     wxDECLARE_EVENT_TABLE();
 };

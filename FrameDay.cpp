@@ -3,6 +3,7 @@
 //
 
 #include "FrameDay.h"
+#include <wx/event.h>
 
 wxBEGIN_EVENT_TABLE(FrameDay, wxFrame)
     EVT_MENU(ID_NEWACTIVITY, FrameDay::newActivity)
@@ -35,8 +36,8 @@ FrameDay::FrameDay(const wxString &title, Register *r)
 
     list->AppendColumn("Orario di inizio");
     list->AppendColumn("Titolo attività");
-    list->SetColumnWidth(0, 250);
-    list->SetColumnWidth(1, 250);
+    list->SetColumnWidth(0, 150);
+    list->SetColumnWidth(1, 350);
 
     wxBoxSizer *box = new wxBoxSizer(wxVERTICAL);
 
@@ -47,17 +48,21 @@ FrameDay::FrameDay(const wxString &title, Register *r)
 
     panel->SetSizer(box);
 
+    panel->SetOwnBackgroundColour(*palette.lightestYellow);
+    calendar->SetHighlightColours(*wxBLACK, *palette.lightestYellow);
+    calendar->SetHeaderColours(*wxBLACK, *palette.lightYellow);
+    dateDay->SetFont(*font.title);
 
     Centre();
 }
 
 void FrameDay::newActivity(wxCommandEvent & WXUNUSED(event)) {
-    auto frame= new FrameActivity("Nuova attività", logbook);
+    auto frame= new FrameActivity("Nuova attività", logbook, calendar->GetDate().Format("%d/%m/%Y").ToStdString());
     frame->Show(true);
 }
 
 void FrameDay::modifyActivity(wxListEvent &event) {
-    auto frame = new FrameActivity("Modifica attività", logbook);
+    auto frame = new FrameActivity("Visualizza e modifica attività", logbook, calendar->GetDate().Format("%d/%m/%Y").ToStdString());
     frame->editActivity(activities[event.GetIndex()]);
     frame->Show(true);
 }
@@ -71,8 +76,8 @@ void FrameDay::update() {
     list->ClearAll();
     list->AppendColumn("Orario di inizio");
     list->AppendColumn("Titolo attività");
-    list->SetColumnWidth(0, 250);
-    list->SetColumnWidth(1, 250);
+    list->SetColumnWidth(0, 150);
+    list->SetColumnWidth(1, 350);
     auto date = calendar->GetDate();
     dateDay->SetLabelText(wxT("~")+date.Format("%d/%m/%Y")+wxT("~"));
     activities = logbook->GetDailyActivities(date.Format("%d/%m/%Y").ToStdString());
@@ -88,4 +93,3 @@ void FrameDay::update() {
         list->SetItem(item);
     }
 }
-

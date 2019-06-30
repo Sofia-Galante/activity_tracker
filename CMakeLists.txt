@@ -8,7 +8,7 @@ include(${wxWidgets_USE_FILE})
 
 add_subdirectory(test)
 
-set(SOURCE_FILES Activity.cpp Activity.h Register.cpp Register.h FrameDay.cpp FrameDay.h Subject.h Observer.h FrameActivity.cpp FrameActivity.h)
+set(SOURCE_FILES Activity.cpp Activity.h Register.cpp Register.h FrameDay.cpp FrameDay.h Subject.h Observer.h FrameActivity.cpp FrameActivity.h ColorsAndFonts.h)
 add_executable(activitytracker main.cpp)
 add_library(core ${SOURCE_FILES})
 target_link_libraries(activitytracker ${wxWidgets_LIBRARIES} core)

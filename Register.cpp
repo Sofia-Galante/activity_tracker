@@ -3,6 +3,7 @@
 //
 
 #include "Register.h"
+#include <fstream>
 
 void Register::saveActivity(const Activity &activity) {
     auto key = logbook.equal_range(activity.getDate());

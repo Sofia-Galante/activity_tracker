@@ -1,11 +1,5 @@
-#include <iostream>
-#include <string>
-#include <map>
-#include <ctime>
 #include <wx/wx.h>
-
 #include "FrameDay.h"
-#include "FrameActivity.h"
 #include "Register.h"
 
 class MyApp : public wxApp{

@@ -61,12 +61,3 @@ void Activity::setEndTime (int hour_, int minute_){
         startTime=endTime;
     }
 }
-
-void Activity::print(){
-        std::cout << "Attività: " << name << std::endl << std::endl;
-        std::cout << "Descrizione:" << std::endl;
-        std::cout << description << std::endl << std::endl;
-        std::cout << "Data: " << date << std::endl << std::endl;
-        std::cout << "Ora di inizio: " << startTime << std::endl << std::endl;
-        std::cout << "Ora di fine: " << endTime << std::endl << std::endl;
-    }

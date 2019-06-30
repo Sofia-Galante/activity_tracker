@@ -5,12 +5,12 @@
 #ifndef ACTIVITYTRACKER_REGISTER_H
 #define ACTIVITYTRACKER_REGISTER_H
 
-#include "Activity.h"
-#include "Subject.h"
 #include <map>
 #include <vector>
 #include <list>
 #include <iostream>
+#include "Subject.h"
+#include "Activity.h"
 
 class Register : public Subject {
 public:

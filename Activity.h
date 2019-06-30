@@ -13,7 +13,6 @@ class Activity{
 public:
     explicit Activity();
 
-
     void setName(const std::string &name_){
         name=name_;
     }
@@ -39,8 +38,6 @@ public:
     std::string getEndTime() const{
         return endTime;
     }
-
-    void print();
 
     bool operator== (const Activity& right) const{
         if(right.name!=this->name)
