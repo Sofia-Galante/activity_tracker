@@ -40,22 +40,22 @@ public:
     }
 
     bool operator== (const Activity& right) const{
-        if(right.name!=this->name)
+        if(right.name!=name)
             return false;
-        if(right.date!=this->date)
+        if(right.date!=date)
             return false;
-        if(right.startTime!=this->startTime)
+        if(right.startTime!=startTime)
             return false;
-        if(right.endTime!=this->endTime)
+        if(right.endTime!=endTime)
             return false;
-        if(right.description!=this->description)
+        if(right.description!=description)
             return false;
         return true;
     }
     bool operator< (const Activity& right) const{
-        if (this->date>=right.date)
+        if (date>=right.date)
             return false;
-        if(this->startTime>=right.startTime)
+        if(startTime>=right.startTime)
             return false;
         return true;
     }
